@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="img/logo.png">
   <title>Quizapp</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
@@ -18,45 +19,70 @@
 </head>
 
 <body onload="init()">
+  <div class="progress">
+    <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 25%;"></div>
+  </div>
   <div class="card quiz-card">
     <div class="left-card">
       <img src="img/logo.png" class="card-img-top">
+      <div class="category-button-container">  
+        <button id="html-button" class="category-button" onclick="selectQuizCategory('html-button', html, 'HTML')" style="border-left: 5px solid rgb(255, 255, 255) !important;">HTML</button>
+        <button id="css-button" class="category-button" onclick="selectQuizCategory('css-button', css, 'CSS')">CSS</button>
+        <button id="js-button" class="category-button" onclick="selectQuizCategory('js-button', js, 'JS')">JS</button>
+        <button id="java-button" class="category-button" onclick="selectQuizCategory('java-button', java, 'JAVA')">JAVA</button>
+      </div>
     </div>
-    <div class="card-body">
-      <h5 class="card-title" id="question-text"></h5>
 
-      <div class="card mb-2">
-        <div class="card-body" id="answer1">
-          
+    <div class="card-body startscreen" id="startscreen">
+       
+    </div>
+
+    <div class="card-body endscreen" id="endscreen" style="display: none;">
+      <img src="img/brain result.png">
+      <span class="complete-text">COMPLETE <br> HTML QUIZ</span>
+      <div class="score-container"> 
+        <span class="score-text">Your Score</span>
+        <span class="score-points" id="score-points"></span>
+      </div>
+      <button onclick="share()" class="btn btn-primary">Share</button>
+      <button onclick="restartGame()" class="btn btn-link">Replay</button>  
+    </div>
+
+    <div class="card-body" id="question-body" style="display: none;">
+      <h5 class="card-title" id="question-text">Frage</h5>
+
+      <div class="card quiz-answer mb-2" onclick="answer('answer_1')">
+        <div class="card-body" id="answer_1">
+            Antwort 1
         </div>
       </div>
 
-      <div class="card mb-2">
-        <div class="card-body" id="answer2">
-          
+      <div class="card quiz-answer mb-2" onclick="answer('answer_2')">
+        <div class="card-body" id="answer_2">
+          Antwort 2
         </div>
       </div>
 
-      <div class="card mb-2">
-        <div class="card-body" id="answer3">
-         
+      <div class="card quiz-answer mb-2" onclick="answer('answer_3')">
+        <div class="card-body" id="answer_3">
+          Antwort 3
         </div>
       </div>
 
-      <div class="card mb-2">
-        <div class="card-body" id="answer4">
-          
+      <div class="card quiz-answer mb-2" onclick="answer('answer_4')">
+        <div class="card-body" id="answer_4">
+          Antwort 4
         </div>
       </div>
 
       <div class="question-footer">
-        <div class="arrow-container">
+        <button disabled class="arrow-button" id="last-button" onclick="lastQuestion()">
           <img src="img/backward.png">
-        </div>
-        <span><b>1</b> von <b id="all-questions"></b> Fragen</span>
-        <div class="arrow-container">
+        </button>
+        <span><b id="question-number">1</b> von <b id="all-questions"></b> Fragen</span>
+        <button disabled class="arrow-button" id="next-button" onclick="nextQuestion()">
           <img src="img/forward.png">
-        </div>
+        </button>
       </div>
     </div>
   </div>
